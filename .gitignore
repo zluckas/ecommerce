@@ -1,0 +1,12 @@
+# Ignora ambientes virtuais em qualquer profundidade
+.venv/
+venv/
+env/
+ENV/
+
+# Ignora pastas de cache do Python em qualquer subpasta
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+.vscode/
