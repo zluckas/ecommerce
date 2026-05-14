@@ -26,24 +26,28 @@ API RESTful de e-commerce desenvolvida para estudo de modelagem relacional, CRUD
 
 # 📁 Estrutura do Projeto
 
-app
-├── database.py
-├── extensions
-│   └── __init__.py
-├── main.py
-├── models.py
-├── requirements.txt
-└── routes
-    ├── categorias
-    │   └── __init__.py
-    ├── papeis
-    │   └── __init__.py
-    ├── pedidos
-    │   └── __init__.py
-    ├── produtos
-    │   └── __init__.py
-    └── usuarios
-        └── __init__.py
+.
+├── app
+│   ├── database.py
+│   ├── extensions
+│   │   └── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── requirements.txt
+│   └── routes
+│       ├── categorias
+│       │   └── __init__.py
+│       ├── papeis
+│       │   └── __init__.py
+│       ├── pedidos
+│       │   └── __init__.py
+│       ├── produtos
+│       │   └── __init__.py
+│       └── usuarios
+│           └── __init__.py
+├── LICENSE
+└── README.md
+
 
 
 

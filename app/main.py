@@ -1,6 +1,10 @@
 from fastapi import FastAPI
-from routes import (
-    papeis, usuarios, produtos, categorias, pedidos
+from app.routes.categorias import categorias
+from app.routes.papeis import papeis
+from app.routes.pedidos import pedidos
+from app.routes.produtos import produtos
+from app.routes.usuarios import (
+    usuarios
 )
 from extensions import lifespan
 
