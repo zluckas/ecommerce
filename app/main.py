@@ -6,7 +6,7 @@ from app.routes.produtos import produtos
 from app.routes.usuarios import (
     usuarios
 )
-from extensions import lifespan
+from app.dependencies.deps import lifespan
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(usuarios.router)

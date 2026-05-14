@@ -22,38 +22,32 @@ API RESTful de e-commerce desenvolvida para estudo de modelagem relacional, CRUD
      <img src="https://img.shields.io/badge/-Git-F05032?style=flat&logo=git&logoColor=white"/>
 </p>
 
+<br>
+
 
 
 # 📁 Estrutura do Projeto
+```
+ecommerce
+├─ LICENSE
+├─ README.md
+└─ app
+   ├─ database.py
+   ├─ deps
+   │  └─ deps.py
+   ├─ main.py
+   ├─ models.py
+   ├─ requirements.txt
+   └─ routes
+      ├─ categorias
+      │  └─ categorias.py
+      ├─ papeis
+      │  └─ papeis.py
+      ├─ pedidos
+      │  └─ pedidos.py
+      ├─ produtos
+      │  └─ produtos.py
+      └─ usuarios
+         └─ usuarios.py
 
-.
-├── app
-│   ├── database.py
-│   ├── extensions
-│   │   └── __init__.py
-│   ├── main.py
-│   ├── models.py
-│   ├── requirements.txt
-│   └── routes
-│       ├── categorias
-│       │   └── __init__.py
-│       ├── papeis
-│       │   └── __init__.py
-│       ├── pedidos
-│       │   └── __init__.py
-│       ├── produtos
-│       │   └── __init__.py
-│       └── usuarios
-│           └── __init__.py
-├── LICENSE
-└── README.md
-
-
-
-
-
-
-
-
-
-
+```

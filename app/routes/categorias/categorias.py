@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from models import Categorias
-from extensions import SessionDep
+from app.dependencies.deps import SessionDep
 from sqlmodel import select
 
 router = APIRouter(

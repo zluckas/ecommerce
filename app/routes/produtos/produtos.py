@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from models import Produtos
-from extensions import SessionDep
+from app.dependencies.deps import SessionDep
 from sqlmodel import select
 from decimal import Decimal
 

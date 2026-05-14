@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from models import Usuarios
 from pwdlib import PasswordHash
-from extensions import SessionDep
+from app.dependencies.deps import SessionDep
 from sqlmodel import select
 
 router = APIRouter(
