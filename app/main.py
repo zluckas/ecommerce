@@ -1,12 +1,10 @@
 from fastapi import FastAPI
-from app.routes.categorias import categorias
-from app.routes.papeis import papeis
-from app.routes.pedidos import pedidos
-from app.routes.produtos import produtos
-from app.routes.usuarios import (
-    usuarios
-)
-from app.dependencies.deps import lifespan
+from routes.usuarios import usuarios
+from routes.papeis import papeis
+from routes.produtos import produtos
+from routes.categorias import categorias
+from routes.pedidos import pedidos  
+from deps.deps import lifespan
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(usuarios.router)
