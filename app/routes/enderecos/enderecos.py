@@ -1,8 +1,6 @@
-from decimal import Decimal
-
 from fastapi import APIRouter
-from models import Enderecos, Pagamentos
-from deps import SessionDep
+from models import Enderecos
+from deps.deps import SessionDep
 from sqlmodel import select
 
 router = APIRouter(

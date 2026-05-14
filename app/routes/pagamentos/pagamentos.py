@@ -1,8 +1,7 @@
 from decimal import Decimal
-
 from fastapi import APIRouter
 from models import Pagamentos
-from deps import SessionDep
+from deps.deps import SessionDep
 from sqlmodel import select
 
 router = APIRouter(
@@ -16,8 +15,8 @@ def listar(session:SessionDep) -> list[Pagamentos]:
     return pagamentos
 
 @router.post('/')
-async def cadastrar(session:SessionDep, pedido_id:int, valor:Decimal) -> Pagamentos:
-    pagamento = Pagamentos(pedido_id=pedido_id, valor=valor, metodo="Cartão de Crédito", status="Pendente")
+async def cadastrar(session:SessionDep, pedido_id:int, valor:Decimal, metodo:str) -> Pagamentos:
+    pagamento = Pagamentos(pedido_id=pedido_id, valor=valor, metodo=metodo, status="Pendente")
     session.add(pagamento)
     session.commit()
     session.refresh(pagamento)
@@ -30,10 +29,11 @@ async def excluir(session:SessionDep, id:int):
      session.commit()
 
 @router.put('/')
-async def atualizar(session:SessionDep, id:int, pedido_id:int, valor:Decimal) -> Pagamentos:
+async def atualizar(session:SessionDep, id:int, pedido_id:int, valor:Decimal, metodo:str) -> Pagamentos:
     pagamentoUpdate = session.get(Pagamentos, id)
     pagamentoUpdate.pedido_id = pedido_id
     pagamentoUpdate.valor = valor
+    pagamentoUpdate.metodo = metodo
     session.add(pagamentoUpdate)
     session.commit()
     session.refresh(pagamentoUpdate)
