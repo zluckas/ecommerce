@@ -1,6 +1,6 @@
 from sqlmodel import SQLModel, table, Field, Relationship
 from typing import Optional, List
-from datetime import datetime, UTC
+from datetime import datetime
 from decimal import Decimal
 
 class UsuarioPapel(SQLModel, table=True):
@@ -14,9 +14,9 @@ class Usuario(SQLModel, table=True):
     nome:str
     email:str = Field(index=True, unique=True)
     senha_hash:str = Field(index=None)
-    criado_em:datetime = Field(default_factory=lambda: datetime.now(UTC))
+    criado_em:datetime = Field(default_factory=datetime.utcnow)
 
-    papeis: List[Papel] = Relationship(back_populates='usuarios', link_model=UsuarioPapel)
+    papeis: List["Papel"] = Relationship(back_populates='usuarios', link_model=UsuarioPapel)
 
 class Papel(SQLModel, table=True):
     __tablename__ = 'papeis'
@@ -36,9 +36,9 @@ class Produto(SQLModel, table=True):
     nome:str
     descricao:str | None = None    
     preco:Decimal = Field(default=0, max_digits=10, decimal_places=2) 
-    criado_em:datetime = Field(default_factory=lambda: datetime.now(UTC))
+    criado_em:datetime = Field(default_factory=datetime.utcnow)
 
-    categorias: List[Categoria] = Relationship(back_populates='produtos', link_model=ProdutoCategoria)
+    categorias: List["Categoria"] = Relationship(back_populates='produtos', link_model=ProdutoCategoria)
 
 class Categoria(SQLModel, table=True):
     __tablename__ = 'categorias'
@@ -53,9 +53,7 @@ class Pedido(SQLModel, table=True):
     usuario_id:int = Field(foreign_key="usuarios.id")
     total:Decimal = Field(default=0, max_digits=10, decimal_places=2)
     status:str
-    criado_em:datetime = Field(default_factory=lambda: datetime.now(UTC))
-
-    itens: List[ItemPedido] = Relationship(back_populates='pedido')
+    criado_em:datetime = Field(default_factory=datetime.utcnow)
 
 class ItemPedido(SQLModel, table=True):
     __tablename__ = 'itens_pedido'
@@ -72,7 +70,7 @@ class Pagamento(SQLModel, table=True):
     valor:Decimal = Field(default=0, max_digits=10, decimal_places=2)
     metodo:str
     status:str
-    pago_em:datetime = Field(default_factory=lambda: datetime.now(UTC))
+    pago_em:datetime = Field(default_factory=datetime.utcnow)
 
 class Endereco(SQLModel, table=True):
     __tablename__ = 'enderecos'
@@ -90,12 +88,12 @@ class Avaliacao(SQLModel, table=True):
     produto_id:int = Field(foreign_key="produtos.id")
     nota:int
     comentario:str | None = None
-    criado_em:datetime = Field(default_factory=lambda: datetime.now(UTC))
+    criado_em:datetime = Field(default_factory=datetime.utcnow)
 
 class Estoque(SQLModel, table=True):
     __tablename__ = 'estoque'
     id:int | None = Field(default=None, primary_key=True)
     produto_id:int = Field(foreign_key="produtos.id", unique=True)
     quantidade:int
-    atualizado_em:datetime = Field(default_factory=lambda: datetime.now(UTC))
+    atualizado_em:datetime = Field(default_factory=datetime.utcnow)
  

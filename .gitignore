@@ -10,3 +10,5 @@ ENV/
 *$py.class
 
 .vscode/
+
+.env
