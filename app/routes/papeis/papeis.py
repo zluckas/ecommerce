@@ -1,21 +1,21 @@
 from fastapi import APIRouter
-from models import Papeis
+from models import Papel
 from deps.deps import SessionDep
 from sqlmodel import select
 
 router = APIRouter(
     prefix="/papeis",
-    tags=["Papeis"]
+    tags=["Papel"]
 )
 
 @router.get('/')
-def listar(session:SessionDep) -> list[Papeis]:
-    papeis = session.exec(select(Papeis)).all()
+def listar(session:SessionDep) -> list[Papel]:
+    papeis = session.exec(select(Papel)).all()
     return papeis
 
 @router.post('/')
-async def cadastrar(session:SessionDep, nome:str) -> Papeis:
-    papel = Papeis(nome=nome)
+async def cadastrar(session:SessionDep, nome:str) -> Papel:
+    papel = Papel(nome=nome)
     session.add(papel)
     session.commit()
     session.refresh(papel)
@@ -23,13 +23,13 @@ async def cadastrar(session:SessionDep, nome:str) -> Papeis:
 
 @router.delete('/{id}')
 async def excluir(session:SessionDep, id:int):
-     papel = session.get(Papeis, id)
+     papel = session.get(Papel, id)
      session.delete(papel)
      session.commit()
 
 @router.put('/')
-async def atualizar(session:SessionDep, id:int, nome:str) -> Papeis:
-    papelUpdate = session.get(Papeis, id)
+async def atualizar(session:SessionDep, id:int, nome:str) -> Papel:
+    papelUpdate = session.get(Papel, id)
     papelUpdate.nome = nome
     session.add(papelUpdate)
     session.commit()

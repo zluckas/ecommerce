@@ -1,25 +1,25 @@
 from fastapi import APIRouter
-from models import Usuarios
+from models import Usuario
 from pwdlib import PasswordHash
 from deps.deps import SessionDep
 from sqlmodel import select
 
 router = APIRouter(
     prefix="/usuarios",
-    tags=["Usuarios"]
+    tags=["Usuario"]
 )
 
 password_hash = PasswordHash.recommended()
 
 @router.get('/')
-def listar(session:SessionDep) -> list[Usuarios]:
-    usuarios = session.exec(select(Usuarios)).all()
+def listar(session:SessionDep) -> list[Usuario]:
+    usuarios = session.exec(select(Usuario)).all()
     return usuarios
 
 @router.post('/')
-async def cadastrar(session:SessionDep, usuario:Usuarios, nome:str, email:str, senha:str) -> Usuarios:
+async def cadastrar(session:SessionDep, usuario:Usuario, nome:str, email:str, senha:str) -> Usuario:
     hash = password_hash.hash(senha)
-    usuario = Usuarios(nome=nome, email=email, senha_hash=hash)
+    usuario = Usuario(nome=nome, email=email, senha_hash=hash)
     session.add(usuario)
     session.commit()
     session.refresh(usuario)
@@ -27,13 +27,13 @@ async def cadastrar(session:SessionDep, usuario:Usuarios, nome:str, email:str, s
 
 @router.delete('/{id}')
 async def excluir(session:SessionDep, id:int):
-    usuario = session.get(Usuarios, id)
+    usuario = session.get(Usuario, id)
     session.delete(usuario)
     session.commit()
 
 @router.put('/')
-async def atualizar(session:SessionDep, id:int, nome:str, email:str) -> Usuarios:
-    usuarioUpdate = session.get(Usuarios, id)
+async def atualizar(session:SessionDep, id:int, nome:str, email:str) -> Usuario:
+    usuarioUpdate = session.get(Usuario, id)
     usuarioUpdate.nome = nome
     usuarioUpdate.email = email
     session.add(usuarioUpdate)

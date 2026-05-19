@@ -7,6 +7,7 @@ from routes.pedidos import pedidos
 from routes.enderecos import enderecos
 from routes.pagamentos import pagamentos
 from routes.avaliacoes import avaliacoes
+from routes.estoque import estoque
 from deps.deps import lifespan
 
 app = FastAPI(lifespan=lifespan)
@@ -18,6 +19,7 @@ app.include_router(pedidos.router)
 app.include_router(enderecos.router)
 app.include_router(pagamentos.router)
 app.include_router(avaliacoes.router)
+app.include_router(estoque.router)
 
 
 
