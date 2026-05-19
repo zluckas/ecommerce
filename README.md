@@ -25,26 +25,34 @@ API RESTful de e-commerce desenvolvida para estudo de modelagem relacional, CRUD
 
 # 📁 Estrutura do Projeto
 ```
-ecommerce
-├─ LICENSE
-├─ README.md
-└─ app
-   ├─ database.py
-   ├─ deps
-   │  └─ deps.py
-   ├─ main.py
-   ├─ models.py
-   ├─ requirements.txt
-   └─ routes
-      ├─ categorias
-      │  └─ categorias.py
-      ├─ papeis
-      │  └─ papeis.py
-      ├─ pedidos
-      │  └─ pedidos.py
-      ├─ produtos
-      │  └─ produtos.py
-      └─ usuarios
-         └─ usuarios.py
+ecommerce/
+├── app
+│   ├── database.py
+│   ├── deps
+│   │   └── deps.py
+│   ├── main.py
+│   ├── models.py
+│   ├── requirements.txt
+│   └── routes
+│       ├── avaliacoes
+│       │   └── avaliacoes.py
+│       ├── categorias
+│       │   └── categorias.py
+│       ├── enderecos
+│       │   └── enderecos.py
+│       ├── estoque
+│       │   └── estoque.py
+│       ├── pagamentos
+│       │   └── pagamentos.py
+│       ├── papeis
+│       │   └── papeis.py
+│       ├── pedidos
+│       │   └── pedidos.py
+│       ├── produtos
+│       │   └── produtos.py
+│       └── usuarios
+│           └── usuarios.py
+├── LICENSE
+└── README.md
 
 ```
