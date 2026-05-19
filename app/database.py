@@ -1,14 +1,12 @@
 from sqlmodel import SQLModel, Session
 from sqlmodel import create_engine, Session
+from dotenv import load_dotenv
+import os
 
-DB_HOST = '127.0.0.1'
-DB_USER = 'root'
-DB_PASSWORD = '29062007'
-DB_NAME = 'ecommerce'
-DB_PORT = '3306'
+load_dotenv()
 
-sql_url = f"mysql+pymysql://root:usbw@localhost:3307/ecommerce"
-engine = create_engine (sql_url)
+DB_URL = os.getenv('DB_URL')
+engine = create_engine (DB_URL)
 
 def create_db():
     SQLModel.metadata.create_all(engine)
