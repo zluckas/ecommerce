@@ -5,8 +5,8 @@ from decimal import Decimal
 
 class UsuarioPapel(SQLModel, table=True):
     __tablename__ = 'usuario_papeis'
-    usuario_id:int = Field(default=None, primary_key=True)
-    papel_id:int = Field(foreign_key="papeis.id")
+    usuario_id:int = Field(default=None, foreign_key="usuarios.id", primary_key=True)
+    papel_id:int = Field(default=None, foreign_key="papeis.id", primary_key=True,)
 
 class Usuario(SQLModel, table=True):
     __tablename__ = 'usuarios'
@@ -55,6 +55,8 @@ class Pedido(SQLModel, table=True):
     status:str
     criado_em:datetime = Field(default_factory=lambda: datetime.now(UTC))
 
+    itens: List[ItemPedido] = Relationship(back_populates='pedido')
+
 class ItemPedido(SQLModel, table=True):
     __tablename__ = 'itens_pedido'
     id:str | None =  Field(default=None, primary_key=True)
@@ -66,7 +68,7 @@ class ItemPedido(SQLModel, table=True):
 class Pagamento(SQLModel, table=True):
     __tablename__ = 'pagamentos'
     id:int | None = Field(default=None, primary_key=True)
-    pedido_id:int = Field(foreign_key="pedidos.id")
+    pedido_id:int = Field(foreign_key="pedidos.id", unique=True)
     valor:Decimal = Field(default=0, max_digits=10, decimal_places=2)
     metodo:str
     status:str
