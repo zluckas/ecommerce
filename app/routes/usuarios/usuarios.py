@@ -9,7 +9,7 @@ router = APIRouter(
     tags=["Usuario"]
 )
 
-password_hash = PasswordHash.recommended()
+senha_context = PasswordHash.recommended()
 
 @router.get('/')
 def listar(session:SessionDep) -> list[Usuario]:
@@ -18,8 +18,8 @@ def listar(session:SessionDep) -> list[Usuario]:
 
 @router.post('/')
 async def cadastrar(session:SessionDep, usuario:Usuario, nome:str, email:str, senha:str) -> Usuario:
-    hash = password_hash.hash(senha)
-    usuario = Usuario(nome=nome, email=email, senha_hash=hash)
+    senha_hash = senha_context.hash(senha)
+    usuario = Usuario(nome=nome, email=email, senha_hash=senha_hash)
     session.add(usuario)
     session.commit()
     session.refresh(usuario)
